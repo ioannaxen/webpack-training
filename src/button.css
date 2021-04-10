@@ -1,0 +1,8 @@
+button {
+  background-color: cadetblue;
+  color: white;
+  font-weight: bold;
+  border: none;
+  height: 50px;
+  width: 100px;
+}
