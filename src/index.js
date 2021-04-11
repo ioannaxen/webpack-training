@@ -2,8 +2,16 @@ import helloWorld from './hello-world'
 import makeButton from './button'
 import makeImage from './image'
 import imageUrl from './webpack-logo.jpeg'
-const getMakeBox = () => import('./box.ts')
-const setButtonStyle = color => import(`./button/themes/${color}`)
+const getMakeBox = () =>
+  import(
+    /* webpackChunkName: "box" */
+    './box.ts'
+  )
+const setButtonStyle = color =>
+  import(
+    /* webpackChunkName: "buttonStyle" */
+    `./button/themes/${color}`
+  )
 
 const button = makeButton('Click here')
 setButtonStyle('red').then(({ default: style }) => {
