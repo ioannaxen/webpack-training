@@ -7,11 +7,23 @@ const getMakeBox = () =>
     /* webpackChunkName: "box" */
     './box.ts'
   )
-const setButtonStyle = color =>
-  import(
-    /* webpackChunkName: "buttonStyle" */
-    `./button/themes/${color}`
-  )
+
+let setButtonStyle
+
+if (process.env.NODE_END === 'development') {
+  setButtonStyle = color =>
+    import(
+      /* webpackChunkName: "buttonStyle" */
+      /* webpackMode: "lazy-once" */
+      `./button/themes/${color}`
+    )
+} else {
+  setButtonStyle = color =>
+    import(
+      /* webpackChunkName: "buttonStyle" */
+      `./button/themes/${color}`
+    )
+}
 
 const button = makeButton('Click here')
 setButtonStyle('red').then(({ default: style }) => {
