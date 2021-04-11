@@ -1,0 +1,9 @@
+div {
+  border: 2px dotted crimson;
+  height: 100px;
+  width: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: fantasy;
+}

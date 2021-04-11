@@ -3,8 +3,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const webpackMerge = require('webpack-merge')
 
 const modeConfig = env => require(`./build-utils/webpack.${env}`)
+const loadPresets = require('./build-utils/loadPresets')
 
-module.exports = ({ mode } = { mode: 'production' }) =>
+module.exports = ({ mode = 'production', presets = [] }) =>
   webpackMerge(
     {
       mode,
@@ -28,5 +29,6 @@ module.exports = ({ mode } = { mode: 'production' }) =>
       },
       plugins: [new HtmlWebpackPlugin(), new webpack.ProgressPlugin()],
     },
-    modeConfig(mode)
+    modeConfig(mode),
+    loadPresets({ mode, presets })
   )
